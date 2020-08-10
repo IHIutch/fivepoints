@@ -1,33 +1,50 @@
 <template>
   <Layout>
-
-    <!-- Learn how to use images here: https://gridsome.org/docs/images -->
-    <g-image alt="Example image" src="~/favicon.png" width="135" />
-
-    <h1>Hello, world!</h1>
-
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur excepturi labore tempore expedita, et iste tenetur suscipit explicabo! Dolores, aperiam non officia eos quod asperiores
-    </p>
-
-    <p class="home-links">
-      <a href="https://gridsome.org/docs/" target="_blank" rel="noopener">Gridsome Docs</a>
-      <a href="https://github.com/gridsome/gridsome" target="_blank" rel="noopener">GitHub</a>
-    </p>
-
+    Hey
+    <ul v-for="(offering, idx) in offerings">
+      <li>
+        <div>
+          <h1>
+            {{ offering.Title }}
+          </h1>
+          <p>{{ offering.Description }}</p>
+          <span>${{ offering.Price }}</span>
+        </div>
+      </li>
+    </ul>
   </Layout>
 </template>
 
-<script>
-export default {
-  metaInfo: {
-    title: 'Hello, world!'
+<page-query>
+query {
+  offerings: allStrapiOfferings {
+    edges {
+      node {
+        id
+        Title,
+        Image{
+          url
+        },
+        Description,
+        Price
+      }
+    }
   }
 }
-</script>
+</page-query>
 
-<style>
-.home-links a {
-  margin-right: 1rem;
-}
-</style>
+<script>
+export default {
+  name: "Home",
+  metaInfo: {
+    title: "Hello, world!",
+  },
+  computed: {
+    offerings() {
+      return this.$page.offerings.edges.map((offering) => {
+        return { ...offering.node };
+      });
+    },
+  },
+};
+</script>
