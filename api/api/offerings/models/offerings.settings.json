@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "offerings",
+  "info": {
+    "name": "Offerings"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Description": {
+      "type": "string"
+    },
+    "Image": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "Price": {
+      "type": "decimal"
+    },
+    "Title": {
+      "type": "string"
+    }
+  }
+}
