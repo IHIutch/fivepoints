@@ -9,7 +9,7 @@
     "timestamps": true
   },
   "attributes": {
-    "Description": {
+    "Title": {
       "type": "string"
     },
     "Image": {
@@ -23,11 +23,11 @@
       "plugin": "upload",
       "required": false
     },
+    "Description": {
+      "type": "text"
+    },
     "Price": {
       "type": "decimal"
-    },
-    "Title": {
-      "type": "string"
     }
   }
 }
